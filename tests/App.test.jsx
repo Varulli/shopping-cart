@@ -1,5 +1,5 @@
 import { describe, it, expect, beforeEach } from "vitest";
-import { render, screen } from "@testing-library/react";
+import { cleanup, render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import App from "../src/components/App";
 import routes from "../src/routes";
@@ -66,5 +66,21 @@ describe("App", () => {
     const heading = screen.getByRole("heading");
 
     expect(heading.textContent).toMatch(/home/i);
+  });
+
+  it("renders the error page when navigating to a non-existent page", () => {
+    cleanup();
+    const router = createMemoryRouter(routes, {
+      initialEntries: ["/invalid-url"],
+    });
+    render(
+      <RouterProvider router={router}>
+        <App />
+      </RouterProvider>
+    );
+
+    const heading = screen.getByRole("heading");
+
+    expect(heading.textContent).toMatch(/404/i);
   });
 });
