@@ -55,11 +55,13 @@ describe("App", () => {
     expect(heading.textContent).toMatch(/cart/i);
   });
 
-  it("renders the homepage after clicking the home link", async () => {
+  it("renders the homepage after clicking the home link from a different page", async () => {
     const user = userEvent.setup();
-    const link = screen.getByRole("link", { name: /home/i });
+    const storeLink = screen.getByRole("link", { name: /store/i });
+    const homeLink = screen.getByRole("link", { name: /home/i });
 
-    await user.click(link);
+    await user.click(storeLink);
+    await user.click(homeLink);
 
     const heading = screen.getByRole("heading");
 
