@@ -1,17 +1,12 @@
 import { describe, it, expect, beforeEach } from "vitest";
 import { cleanup, render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-import App from "../src/components/App";
 import routes from "../src/routes";
 import { createMemoryRouter, RouterProvider } from "react-router-dom";
 
 beforeEach(() => {
   const router = createMemoryRouter(routes, { initialEntries: ["/"] });
-  render(
-    <RouterProvider router={router}>
-      <App />
-    </RouterProvider>
-  );
+  render(<RouterProvider router={router} />);
 });
 
 describe("App", () => {
@@ -73,11 +68,7 @@ describe("App", () => {
     const router = createMemoryRouter(routes, {
       initialEntries: ["/invalid-url"],
     });
-    render(
-      <RouterProvider router={router}>
-        <App />
-      </RouterProvider>
-    );
+    render(<RouterProvider router={router} />);
 
     const heading = screen.getByRole("heading");
 

@@ -1,7 +1,9 @@
 import { cleanup, render, screen } from "@testing-library/react";
-import { beforeEach, describe, expect, it, vi } from "vitest";
+import { beforeEach, describe, expect, it } from "vitest";
 import StoreItem from "../src/components/StoreItem";
 import userEvent from "@testing-library/user-event";
+import ProductPage from "../src/components/ProductPage";
+import { RouterProvider, createMemoryRouter } from "react-router-dom";
 
 const product = {
   id: 1,
@@ -54,16 +56,29 @@ describe("StoreItem", () => {
     expect(image).toBeInTheDocument();
   });
 
-  it("calls the click handler after clicking the product link", async () => {
+  it("renders the relevant product page after clicking the product link", async () => {
     cleanup();
-    const handleClick = vi.fn();
-    render(<StoreItem product={product} handleClick={handleClick} />);
+    const router = createMemoryRouter(
+      [
+        {
+          path: "/cart",
+          element: <StoreItem product={product} />,
+        },
+        { path: "/product/:id", element: <ProductPage /> },
+      ],
+      { initialEntries: ["/cart"] }
+    );
+    render(<RouterProvider router={router} />);
 
     const user = userEvent.setup();
     const link = screen.getByRole("link");
 
     await user.click(link);
 
-    expect(handleClick).toHaveBeenCalled();
+    const heading = screen.getByRole("heading");
+
+    expect(heading.textContent).toMatch(product.title, {
+      exact: false,
+    });
   });
 });
