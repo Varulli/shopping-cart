@@ -10,4 +10,12 @@ describe("Homepage", () => {
 
     expect(heading.textContent).toMatch(/home/i);
   });
+
+  it("renders a homepage image", () => {
+    render(<HomePage />);
+
+    const image = screen.getByRole("img");
+
+    expect(image).toBeInTheDocument();
+  });
 });

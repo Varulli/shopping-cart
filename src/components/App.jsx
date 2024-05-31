@@ -5,7 +5,7 @@ function App() {
   return (
     <>
       <nav>
-        <ul>
+        <menu>
           <li>
             <Link to="/">Home</Link>
           </li>
@@ -15,7 +15,7 @@ function App() {
           <li>
             <Link to="cart">Cart</Link>
           </li>
-        </ul>
+        </menu>
       </nav>
       <Outlet />
     </>
