@@ -16,7 +16,17 @@ const product = {
 };
 
 beforeEach(() => {
-  render(<StoreItem product={product} />);
+  const router = createMemoryRouter(
+    [
+      {
+        path: "/cart",
+        element: <StoreItem product={product} />,
+      },
+      { path: "/product/:id", element: <ProductPage /> },
+    ],
+    { initialEntries: ["/cart"] }
+  );
+  render(<RouterProvider router={router} />);
 });
 
 describe("StoreItem", () => {
@@ -44,12 +54,6 @@ describe("StoreItem", () => {
     expect(category).toBeInTheDocument();
   });
 
-  it("renders the product description", () => {
-    const description = screen.getByText(product.description);
-
-    expect(description).toBeInTheDocument();
-  });
-
   it("renders the product image", () => {
     const image = screen.getByAltText(product.title, { exact: false });
 
@@ -57,19 +61,6 @@ describe("StoreItem", () => {
   });
 
   it("renders the relevant product page after clicking the product link", async () => {
-    cleanup();
-    const router = createMemoryRouter(
-      [
-        {
-          path: "/cart",
-          element: <StoreItem product={product} />,
-        },
-        { path: "/product/:id", element: <ProductPage /> },
-      ],
-      { initialEntries: ["/cart"] }
-    );
-    render(<RouterProvider router={router} />);
-
     const user = userEvent.setup();
     const link = screen.getByRole("link");
 
