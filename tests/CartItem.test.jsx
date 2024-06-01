@@ -13,6 +13,7 @@ const product = {
   category: "Test Category",
   description: "Test Description",
   image: "test_image.jpg",
+  quantity: 1,
 };
 
 const removeItem = vi.fn();
