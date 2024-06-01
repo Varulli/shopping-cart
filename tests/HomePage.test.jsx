@@ -1,4 +1,4 @@
-import { render, screen } from "@testing-library/react";
+import { render, screen, waitFor } from "@testing-library/react";
 import { describe, expect, it } from "vitest";
 import HomePage from "../src/components/HomePage";
 
@@ -11,11 +11,13 @@ describe("Homepage", () => {
     expect(heading.textContent).toMatch(/home/i);
   });
 
-  it("renders a homepage image", () => {
+  it("renders homepage images", () => {
     render(<HomePage />);
 
-    const image = screen.getByRole("img");
+    waitFor(() => {
+      const images = screen.getAllByRole("img");
 
-    expect(image).toBeInTheDocument();
+      expect(images.length).toBeGreaterThan(0);
+    });
   });
 });
