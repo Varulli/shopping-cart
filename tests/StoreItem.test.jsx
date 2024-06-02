@@ -1,9 +1,9 @@
 import { render, screen } from "@testing-library/react";
-import { beforeEach, describe, expect, it } from "vitest";
+import { beforeEach, describe, expect, it, vi } from "vitest";
 import StoreItem from "../src/components/StoreItem";
 import userEvent from "@testing-library/user-event";
 import ProductPage from "../src/components/ProductPage";
-import { RouterProvider, createMemoryRouter } from "react-router-dom";
+import { Outlet, RouterProvider, createMemoryRouter } from "react-router-dom";
 
 const product = {
   id: 1,
@@ -19,12 +19,18 @@ beforeEach(() => {
   const router = createMemoryRouter(
     [
       {
-        path: "/cart",
-        element: <StoreItem product={product} />,
+        path: "/",
+        element: <Outlet context={[null, vi.fn()]} />,
+        children: [
+          {
+            path: "/store-item",
+            element: <StoreItem product={product} />,
+          },
+          { path: "/product/:id", element: <ProductPage /> },
+        ],
       },
-      { path: "/product/:id", element: <ProductPage /> },
     ],
-    { initialEntries: ["/cart"] }
+    { initialEntries: ["/store-item"] }
   );
   render(<RouterProvider router={router} />);
 });
