@@ -16,7 +16,7 @@ function App() {
             <Link to="store">Store</Link>
           </li>
           <li>
-            <Link to="cart">Cart</Link>
+            <Link to="cart">Cart ({cart.size})</Link>
           </li>
         </menu>
       </nav>
