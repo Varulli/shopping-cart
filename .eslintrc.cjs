@@ -1,5 +1,3 @@
-import { type } from "@testing-library/user-event/dist/types/utility";
-
 module.exports = {
   root: true,
   env: { browser: true, es2020: true },

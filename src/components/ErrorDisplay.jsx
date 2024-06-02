@@ -1,7 +1,7 @@
 function ErrorDisplay({ error }) {
   return (
     <div>
-      <h3>Something went wrong</h3>
+      <p>Something went wrong</p>
       <p>{error.message}</p>
     </div>
   );

@@ -13,7 +13,7 @@ function Loading() {
     return () => clearInterval(interval);
   }, []);
 
-  return <h3>{frames[index]}</h3>;
+  return <p>{frames[index]}</p>;
 }
 
 export default Loading;

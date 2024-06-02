@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 
 function StoreItem({ product }) {
   return (
-    <div className="store-item">
+    <li className="store-item">
       <img src={product.image} alt={product.title} />
 
       <div className="info">
@@ -11,7 +11,7 @@ function StoreItem({ product }) {
         <p>{product.price}</p>
         <p>{product.rating.rate}</p>
       </div>
-    </div>
+    </li>
   );
 }
 

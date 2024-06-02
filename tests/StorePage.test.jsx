@@ -1,4 +1,4 @@
-import { render, screen } from "@testing-library/react";
+import { render, screen, waitFor } from "@testing-library/react";
 import { beforeEach, describe, expect, it } from "vitest";
 import StorePage from "../src/components/StorePage";
 import userEvent from "@testing-library/user-event";
@@ -15,9 +15,11 @@ describe("StorePage", () => {
   });
 
   it("renders a list of 10 products by default", () => {
-    const products = screen.getAllByRole("listitem");
+    waitFor(() => {
+      const products = screen.getAllByRole("listitem");
 
-    expect(products).toHaveLength(10);
+      expect(products).toHaveLength(10);
+    });
   });
 
   it("renders the button to load more products", () => {
