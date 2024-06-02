@@ -8,7 +8,7 @@ function Loading() {
   useEffect(() => {
     const interval = setInterval(() => {
       setIndex((index) => (index + 1) % frames.length);
-    }, 200);
+    }, 100);
 
     return () => clearInterval(interval);
   }, []);
