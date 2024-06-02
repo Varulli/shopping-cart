@@ -48,7 +48,15 @@ function ProductPage() {
   };
 
   const handleClick = () => {
-    setCart(new Map([...cart, [product.id, { ...product, quantity }]]));
+    if (cart.has(product.id)) {
+      const { quantity: currentQuantity } = cart.get(product.id);
+      setCart(
+        new Map([
+          ...cart,
+          [product.id, { ...product, quantity: currentQuantity + quantity }],
+        ])
+      );
+    } else setCart(new Map([...cart, [product.id, { ...product, quantity }]]));
   };
 
   return (

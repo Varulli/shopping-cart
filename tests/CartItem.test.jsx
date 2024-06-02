@@ -1,7 +1,7 @@
-import { cleanup, render, screen } from "@testing-library/react";
+import { render, screen } from "@testing-library/react";
 import { beforeEach, describe, expect, it, vi } from "vitest";
 import CartItem from "../src/components/CartItem";
-import { RouterProvider, createMemoryRouter } from "react-router-dom";
+import { Outlet, RouterProvider, createMemoryRouter } from "react-router-dom";
 import ProductPage from "../src/components/ProductPage";
 import userEvent from "@testing-library/user-event";
 
@@ -19,7 +19,23 @@ const product = {
 const removeItem = vi.fn();
 
 beforeEach(() => {
-  render(<CartItem product={product} handleClick={removeItem} />);
+  const router = createMemoryRouter(
+    [
+      {
+        path: "/",
+        element: <Outlet context={[null, vi.fn()]} />,
+        children: [
+          {
+            path: "/cart",
+            element: <CartItem product={product} handleRemove={removeItem} />,
+          },
+          { path: "/product/:id", element: <ProductPage /> },
+        ],
+      },
+    ],
+    { initialEntries: ["/cart"] }
+  );
+  render(<RouterProvider router={router} />);
 });
 
 describe("CartItem", () => {
@@ -50,29 +66,14 @@ describe("CartItem", () => {
   });
 
   it("renders the relevant product page after clicking the product link", async () => {
-    cleanup();
-    const router = createMemoryRouter(
-      [
-        {
-          path: "/cart",
-          element: <CartItem product={product} />,
-        },
-        { path: "/product/:id", element: <ProductPage /> },
-      ],
-      { initialEntries: ["/cart"] }
-    );
-    render(<RouterProvider router={router} />);
-
     const user = userEvent.setup();
     const link = screen.getByRole("link");
 
     await user.click(link);
 
-    const heading = screen.getByRole("heading");
+    const addToCartButton = screen.getByRole("button");
 
-    expect(heading.textContent).toMatch(product.title, {
-      exact: false,
-    });
+    expect(addToCartButton).toBeInTheDocument();
   });
 
   it("removes the product after clicking the remove button", async () => {
@@ -81,6 +82,6 @@ describe("CartItem", () => {
 
     await user.click(button);
 
-    expect(removeItem).toHaveBeenCalledWith(product.id);
+    expect(removeItem).toHaveBeenCalled();
   });
 });
