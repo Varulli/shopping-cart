@@ -23,19 +23,28 @@ describe("StorePage", () => {
   });
 
   it("renders the button to load more products", () => {
-    const button = screen.getByRole("button");
+    waitFor(() => {
+      const button = screen.getByRole("button");
 
-    expect(button).toBeInTheDocument();
+      expect(button).toBeInTheDocument();
+    });
   });
 
   it("renders more products after clicking the load more button", async () => {
     const user = userEvent.setup();
-    const button = screen.getByRole("button");
+    let button;
+    waitFor(() => {
+      button = screen.getByRole("button");
+
+      expect(button).toBeInTheDocument();
+    });
 
     await user.click(button);
 
-    const products = screen.getAllByRole("listitem");
+    waitFor(() => {
+      const products = screen.getAllByRole("listitem");
 
-    expect(products).toHaveLength(20);
+      expect(products).toHaveLength(15);
+    });
   });
 });

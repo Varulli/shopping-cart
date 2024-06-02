@@ -39,11 +39,21 @@ function StorePage() {
       ) : loading ? (
         <Loading />
       ) : (
-        <ul>
-          {products.map((product) => (
-            <StoreItem key={product.id} product={product} />
-          ))}
-        </ul>
+        <>
+          <ul>
+            {products.map((product) => (
+              <StoreItem key={product.id} product={product} />
+            ))}
+          </ul>
+
+          <button
+            type="button"
+            onClick={() => setNumProducts(Math.min(numProducts + 5, 20))}
+            disabled={numProducts === 20}
+          >
+            Load More
+          </button>
+        </>
       )}
     </main>
   );
