@@ -1,4 +1,4 @@
-import { cleanup, render, screen } from "@testing-library/react";
+import { render, screen } from "@testing-library/react";
 import { beforeEach, describe, expect, it } from "vitest";
 import StoreItem from "../src/components/StoreItem";
 import userEvent from "@testing-library/user-event";
@@ -66,10 +66,10 @@ describe("StoreItem", () => {
 
     await user.click(link);
 
-    const heading = screen.getByRole("heading");
-
-    expect(heading.textContent).toMatch(product.title, {
-      exact: false,
+    const addToCartButton = screen.getByRole("button", {
+      name: /add to cart/i,
     });
+
+    expect(addToCartButton).toBeInTheDocument();
   });
 });

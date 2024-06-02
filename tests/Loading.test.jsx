@@ -6,7 +6,7 @@ describe("Loading component", () => {
   it("renders a loading spinner", () => {
     render(<Loading />);
 
-    const spinner = screen.getByRole("heading");
+    const spinner = screen.getByText(/[|/-\\]/);
     const seenFrames = new Set();
 
     waitFor(() => {
