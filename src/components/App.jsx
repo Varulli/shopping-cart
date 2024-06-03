@@ -1,5 +1,5 @@
 import { Link, Outlet } from "react-router-dom";
-import "../styles/App.css";
+import "../styles/App.module.css";
 import { useState } from "react";
 
 function App() {

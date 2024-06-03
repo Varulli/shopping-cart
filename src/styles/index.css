@@ -1,0 +1,32 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-size: 16px;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+:root {
+    --primary-color: #f0f0f0;
+    --secondary-color: #333;
+}
+
+@media screen and (prefers-color-scheme: dark) {
+    :root {
+        --primary-color: #333;
+        --secondary-color: #f0f0f0;
+    }
+}
+
+main {
+    padding: 2rem;
+}
+
+h2 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+}
+
+/* img {
+    max-width: 200px;
+} */
