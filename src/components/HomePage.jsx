@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import { useState } from "react";
 import ErrorDisplay from "./ErrorDisplay";
 import Loading from "./Loading";
+import styles from "../styles/HomePage.module.css";
 
 function HomePage() {
   const [images, setImages] = useState([]);
@@ -14,7 +15,7 @@ function HomePage() {
     (async () => {
       try {
         const response = await fetch(
-          "https://fakestoreapi.com/products?limit=5",
+          "https://fakestoreapi.com/products?limit=10",
           { mode: "cors" }
         );
         if (!response.ok) throw new Error("Failed to fetch images");
@@ -42,10 +43,12 @@ function HomePage() {
       ) : loading ? (
         <Loading />
       ) : (
-        <div className="auto-scroll">
-          {images.map((image) => (
-            <img key={image.id} src={image.url} alt={image.title}></img>
-          ))}
+        <div className={styles["wrapper"]}>
+          <div className={styles["auto-scroll"]}>
+            {images.map((image) => (
+              <img key={image.id} src={image.url} alt={image.title}></img>
+            ))}
+          </div>
         </div>
       )}
     </main>

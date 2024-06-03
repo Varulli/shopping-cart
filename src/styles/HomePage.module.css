@@ -1,0 +1,30 @@
+.wrapper {
+    margin-top: 2rem;
+    overflow-x: hidden;
+    background-color: white;
+    border: 1px solid #e0e0e0;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.auto-scroll {
+    display: flex;
+    gap: 2rem;
+    /* width: 100%; */
+    padding: 1rem;
+    animation: scroll 20s ease-in-out infinite alternate;
+}
+
+.auto-scroll img {
+    max-height: 400px;
+}
+
+@keyframes scroll {
+    0% {
+        transform: translateX(0);
+    }
+
+    100% {
+        transform: translateX(-100%);
+    }
+}
