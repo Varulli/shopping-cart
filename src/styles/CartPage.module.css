@@ -1,0 +1,50 @@
+.wrapper {
+    composes: wrapper from "./composition.css";
+}
+
+.cart-items {
+    border-collapse: collapse;
+    border-radius: .5rem;
+    box-shadow: 0 0 .5rem var(--secondary-color-alt);
+}
+
+.cart-items thead,
+.cart-items tfoot {
+    background-color: var(--primary-color-alt);
+}
+
+.cart-items th,
+.cart-items td {
+    padding: 1rem;
+    text-align: center;
+    font-size: 1.2rem;
+}
+
+.cart-items tfoot th {
+    text-align: right;
+}
+
+.cart-items tfoot td {
+    font-weight: bold;
+}
+
+.cart-items thead th:first-child {
+    border-top-left-radius: .5rem;
+}
+
+.cart-items thead th:last-child {
+    border-top-right-radius: .5rem;
+}
+
+.cart-items tfoot th:first-child {
+    border-bottom-left-radius: .5rem;
+}
+
+.cart-items tfoot td:last-child {
+    border-bottom-right-radius: .5rem;
+}
+
+.checkout {
+    composes: btn from "./composition.css";
+    align-self: flex-end;
+}
