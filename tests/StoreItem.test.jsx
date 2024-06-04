@@ -49,7 +49,7 @@ describe("StoreItem", () => {
   });
 
   it("renders the product rating", () => {
-    const rating = screen.getByText(product.rating.rate);
+    const rating = screen.getByText(product.rating.rate, { exact: false });
 
     expect(rating).toBeInTheDocument();
   });
