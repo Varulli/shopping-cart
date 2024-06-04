@@ -26,3 +26,12 @@
 .load-more:hover {
     background-color: var(--primary-color-alt);
 }
+
+.load-more:active {
+    background-color: var(--primary-color);
+}
+
+.load-more:disabled {
+    background-color: var(--primary-color-alt);
+    cursor: not-allowed;
+}

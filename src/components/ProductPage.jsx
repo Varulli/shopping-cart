@@ -82,26 +82,31 @@ function ProductPage() {
               <span className={styles["star"]}>★</span> {product.rating.rate} (
               {product.rating.count})
             </p>
+
+            <label>
+              Quantity:
+              <input
+                type="number"
+                value={quantity}
+                min={0}
+                max={20}
+                step={1}
+                onChange={handleInputChange}
+                onKeyDown={(e) =>
+                  ["e", "E", "+", "-"].includes(e.key) && e.preventDefault()
+                }
+              />
+            </label>
+
+            <button
+              className={styles["add-to-cart"]}
+              type="button"
+              disabled={quantity === 0}
+              onClick={handleClick}
+            >
+              Add to Cart
+            </button>
           </div>
-
-          <label>
-            Quantity:
-            <input
-              type="number"
-              value={quantity}
-              min={0}
-              max={20}
-              step={1}
-              onChange={handleInputChange}
-              onKeyDown={(e) =>
-                ["e", "E", "+", "-"].includes(e.key) && e.preventDefault()
-              }
-            />
-          </label>
-
-          <button type="button" disabled={quantity === 0} onClick={handleClick}>
-            Add to Cart
-          </button>
         </div>
       )}
     </main>
