@@ -1,37 +1,15 @@
 .wrapper {
-    display: flex;
-    flex-direction: column;
-    gap: 2rem;
+    composes: wrapper from "./composition.css";
 }
 
 .store-items {
     display: flex;
     flex-direction: column;
     border-radius: .5rem;
-    box-shadow: 0 0 .5rem var(--secondary-color);
+    box-shadow: 0 0 .5rem var(--secondary-color-alt);
 }
 
 .load-more {
+    composes: btn from "./composition.css";
     align-self: center;
-    color: var(--secondary-color);
-    background-color: var(--primary-color);
-    font-size: 1.1rem;
-    font-weight: bold;
-    padding: .5rem 1rem;
-    border: 1px solid var(--secondary-color);
-    border-radius: .5rem;
-    cursor: pointer;
-}
-
-.load-more:hover {
-    background-color: var(--primary-color-alt);
-}
-
-.load-more:active {
-    background-color: var(--primary-color);
-}
-
-.load-more:disabled {
-    background-color: var(--primary-color-alt);
-    cursor: not-allowed;
 }

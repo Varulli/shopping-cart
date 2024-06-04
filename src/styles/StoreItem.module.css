@@ -38,7 +38,5 @@
 }
 
 .star {
-    color: gold;
-    font-size: 2rem;
-    line-height: 0;
+    composes: star from "./composition.css";
 }

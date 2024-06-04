@@ -68,7 +68,7 @@ describe("CartPage", () => {
   });
 
   it("renders the cart items", () => {
-    const items = screen.getAllByRole("listitem");
+    const items = screen.getAllByRole("row", { name: /product/i });
 
     expect(items).toHaveLength(3);
   });

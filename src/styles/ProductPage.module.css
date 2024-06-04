@@ -45,33 +45,10 @@
 }
 
 .add-to-cart {
-    align-self: self-start;
-    color: var(--secondary-color);
-    background-color: var(--primary-color);
-    font-size: 1.1rem;
-    font-weight: bold;
-    padding: .5rem 1rem;
-    border: 1px solid var(--secondary-color);
-    border-radius: .5rem;
-    cursor: pointer;
-}
-
-.add-to-cart:hover {
-    background-color: var(--primary-color-alt);
-}
-
-.add-to-cart:active {
-    background-color: var(--primary-color);
-}
-
-.add-to-cart:disabled {
-    background-color: var(--primary-color-alt);
-    color: var(--secondary-color);
-    cursor: not-allowed;
+    composes: btn from "./composition.css";
+    align-self: flex-start;
 }
 
 .star {
-    color: gold;
-    font-size: 2rem;
-    line-height: 0;
+    composes: star from "./composition.css";
 }

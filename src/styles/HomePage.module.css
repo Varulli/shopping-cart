@@ -3,7 +3,7 @@
     overflow-x: hidden;
     background-color: white;
     border-radius: .5rem;
-    box-shadow: 0 0 .5rem var(--secondary-color);
+    box-shadow: 0 0 .5rem var(--secondary-color-alt);
 }
 
 .auto-scroll {

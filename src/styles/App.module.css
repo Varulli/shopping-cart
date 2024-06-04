@@ -1,9 +1,12 @@
-menu {
-    display: flex;
-}
-
 nav {
     background-color: var(--secondary-color);
+    position: sticky;
+    top: 0;
+    box-shadow: 0 0 .5rem var(--secondary-color-alt);
+}
+
+menu {
+    display: flex;
 }
 
 .menu-item {
