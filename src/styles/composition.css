@@ -1,0 +1,39 @@
+/* Styles for composition */
+
+.btn {
+    align-self: center;
+    color: var(--secondary-color);
+    background-color: var(--primary-color);
+    font-size: 1.1rem;
+    font-weight: bold;
+    padding: .5rem 1rem;
+    border: 1px solid var(--secondary-color);
+    border-radius: .5rem;
+    cursor: pointer;
+}
+
+.btn:hover {
+    background-color: var(--primary-color-alt);
+}
+
+.btn:active {
+    background-color: var(--primary-color);
+}
+
+.btn:disabled {
+    background-color: var(--primary-color-alt);
+    color: var(--secondary-color);
+    cursor: not-allowed;
+}
+
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.star {
+    color: gold;
+    font-size: 2rem;
+    line-height: 0;
+}
