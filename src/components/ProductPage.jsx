@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 import { useLocation, useOutletContext, useParams } from "react-router-dom";
 import ErrorDisplay from "./ErrorDisplay";
 import Loading from "./Loading";
+import styles from "../styles/ProductPage.module.css";
+import { priceFormatter } from "../utils";
 
 function ProductPage() {
   const [quantity, setQuantity] = useState(0);
@@ -68,43 +70,38 @@ function ProductPage() {
       ) : loading ? (
         <Loading />
       ) : (
-        <div className="product">
+        <div className={styles["product"]}>
           <img src={product.image} alt={product.title} />
 
-          <div className="info">
+          <div className={styles["info"]}>
             <h3>{product.title}</h3>
             <p>{product.category}</p>
             <p>{product.description}</p>
-            <p>{product.price}</p>
-
-            <div className="rating">
-              <p>{product.rating.rate}</p>
-              <p>{product.rating.count}</p>
-            </div>
-
-            <label>
-              Quantity:
-              <input
-                type="number"
-                value={quantity}
-                min={0}
-                max={20}
-                step={1}
-                onChange={handleInputChange}
-                onKeyDown={(e) =>
-                  ["e", "E", "+", "-"].includes(e.key) && e.preventDefault()
-                }
-              />
-            </label>
-
-            <button
-              type="button"
-              disabled={quantity === 0}
-              onClick={handleClick}
-            >
-              Add to Cart
-            </button>
+            <p>{priceFormatter.format(product.price)}</p>
+            <p>
+              <span className={styles["star"]}>★</span> {product.rating.rate} (
+              {product.rating.count})
+            </p>
           </div>
+
+          <label>
+            Quantity:
+            <input
+              type="number"
+              value={quantity}
+              min={0}
+              max={20}
+              step={1}
+              onChange={handleInputChange}
+              onKeyDown={(e) =>
+                ["e", "E", "+", "-"].includes(e.key) && e.preventDefault()
+              }
+            />
+          </label>
+
+          <button type="button" disabled={quantity === 0} onClick={handleClick}>
+            Add to Cart
+          </button>
         </div>
       )}
     </main>

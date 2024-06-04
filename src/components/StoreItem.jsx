@@ -1,10 +1,6 @@
 import { Link } from "react-router-dom";
 import styles from "../styles/StoreItem.module.css";
-
-const priceFormatter = new Intl.NumberFormat("en-US", {
-  style: "currency",
-  currency: "USD",
-});
+import { priceFormatter } from "../utils";
 
 function StoreItem({ product }) {
   return (
