@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import ErrorDisplay from "./ErrorDisplay";
 import Loading from "./Loading";
 import StoreItem from "./StoreItem";
+import styles from "../styles/StorePage.module.css";
 
 function StorePage() {
   const [numProducts, setNumProducts] = useState(10);
@@ -39,21 +40,22 @@ function StorePage() {
       ) : loading ? (
         <Loading />
       ) : (
-        <>
-          <ul>
+        <div className={styles["wrapper"]}>
+          <ul className={styles["store-items"]}>
             {products.map((product) => (
               <StoreItem key={product.id} product={product} />
             ))}
           </ul>
 
           <button
+            className={styles["load-more"]}
             type="button"
             onClick={() => setNumProducts(Math.min(numProducts + 5, 20))}
             disabled={numProducts === 20}
           >
             Load More
           </button>
-        </>
+        </div>
       )}
     </main>
   );

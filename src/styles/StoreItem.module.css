@@ -2,10 +2,26 @@
     list-style: none;
     display: flex;
     gap: 2rem;
+    padding: 1rem;
+}
+
+.store-item:first-child {
+    border-top-left-radius: .5rem;
+    border-top-right-radius: .5rem;
+}
+
+.store-item:last-child {
+    border-bottom-left-radius: .5rem;
+    border-bottom-right-radius: .5rem;
+}
+
+.store-item:hover {
+    background-color: var(--primary-color-alt);
 }
 
 .store-item img {
-    max-width: 150px;
+    max-width: 175px;
+    border-radius: .5rem;
 }
 
 .info {
